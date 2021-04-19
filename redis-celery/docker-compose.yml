@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+  website:
+    build: .
+    command: >
+      uvicorn
+      --host 0.0.0.0
+      --port 8000
+      --reload
+      "app.main:app"
+    volumes:
+      - ".:/app"
+    ports:
+      - "8000:8000"
+    links:
+      - "redis"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis:/data"
+  
+  worker:
+    build:
+      context: "."
+    command: celery -A app.tasks worker --loglevel=INFO
+    restart: always
+    depends_on:
+      - "redis"
+      - "website"
+
+volumes:
+  redis: {}
+
