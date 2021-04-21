@@ -26,3 +26,7 @@ curl -X 'GET' \
   'http://localhost:8000/items/' \
   -H 'accept: application/json'
 ```
+
+## How?
+
+Run localstack - `docker run --rm -p 4566:4566 -p 4571:4571 -e DEFAULT_REGION=eu-west-1 localstack/localstack` to emulate AWS and copy `.env.development` to `.env`
