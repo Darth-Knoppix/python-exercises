@@ -29,4 +29,6 @@ curl -X 'GET' \
 
 ## How?
 
-Run localstack - `docker run --rm -p 4566:4566 -p 4571:4571 -e DEFAULT_REGION=eu-west-1 localstack/localstack` to emulate AWS and copy `.env.development` to `.env`
+Run localstack - `docker run --rm -p 4566:4566 -p 4571:4571 -e DEFAULT_REGION=eu-west-1 localstack/localstack` in addition to the app itself `docker-compose build` then `docker-compose up`.
+
+**Both localstack and the app must be running for this to work**
