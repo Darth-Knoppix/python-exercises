@@ -3,6 +3,8 @@ version: "2"
 services:
   website:
     build: .
+    env_file:
+      - .env.development
     command: >
       uvicorn
       --host 0.0.0.0
